@@ -7,10 +7,56 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 $routes->get('/', 'Home::index');
-
-$routes->get('/', 'Home::index');         // default
-$routes->get('home', 'Home::index');      // add this
-$routes->get('about', 'Home::about');     // about page
-$routes->get('contact', 'Home::contact'); // contact page
+$routes->get('/home', 'Home::index');          // Homepage
+$routes->get('about', 'Home::about');      // About
+$routes->get('contact', 'Home::contact');  // Contact
 
 
+$routes->get('/register', 'Auth::register');
+
+$routes->post('/register', 'Auth::register');
+
+$routes->get('/login', 'Auth::login');
+
+$routes->post('/login', 'Auth::login');
+
+$routes->get('/logout', 'Auth::logout');
+
+$routes->get('/announcements', 'Announcements::index');
+
+$routes->get('announcements', 'Announcements::index');
+
+$routes->get('/instructor/dashboard', 'Instructor::dashboard');
+$routes->get('/instructor/courses', 'Instructor::courses');
+$routes->get('/instructor/my_students', 'Instructor::my_students');
+
+$routes->get('/instructor/course/courses', 'Instructor::courses');
+
+$routes->get('/instructor/course/(:num)/manage', 'Instructor::manageCourse/$1');
+$routes->match(['get', 'post'], '/instructor/course/upload', 'Materials::upload');
+// $routes->post('instructor/course/upload', 'CourseController::uploadMaterial');
+
+$routes->get('/admin/dashboard', 'Admin::dashboard');
+// Admin management pages
+$routes->get('/admin/manage-users', 'Admin::manageUsers');
+$routes->get('/admin/manage-courses', 'Admin::manageCourses');
+$routes->get('/admin/settings', 'Admin::settings');
+
+$routes->post('course/enroll', 'Course::enroll'); // AJAX endpoint for enrollment
+
+// Use Dashboard::index for /dashboard to load courses and enrollments
+$routes->get('/dashboard', 'Dashboard::index');
+
+$routes->get('/my-courses', 'Dashboard::myCourses');
+$routes->get('/my-grades', 'Dashboard::myGrades');
+
+// DB test route (development only)
+$routes->get('/dbtest', 'DbTest::index');
+
+// Materials routes
+$routes->get('/admin/course/(:num)/upload', 'Materials::upload/$1');
+$routes->post('/admin/course/(:num)/upload', 'Materials::upload/$1');
+$routes->post('/materials/delete/(:num)', 'Materials::delete/$1');
+$routes->get('/materials/download/(:num)', 'Materials::download/$1');
+$routes->get('/course/(:num)/materials', 'Materials::viewMaterials/$1');
+$routes->get('/course/(:num)/materials', 'Materials::viewMaterials/$1');

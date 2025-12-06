@@ -21,7 +21,9 @@ class Cache extends BaseConfig
      * The name of the preferred handler that should be used. If for some reason
      * it is not available, the $backupHandler will be used in its place.
      */
-    public string $handler = 'file';
+    // Use dummy handler during development to avoid filesystem permission issues.
+    // Change back to 'file' for production (requires writable/cache and proper permissions).
+    public string $handler = 'dummy';
 
     /**
      * --------------------------------------------------------------------------

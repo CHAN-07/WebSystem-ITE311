@@ -6,6 +6,7 @@ class Home extends BaseController
 {
     public function index()
     {
+        // Serve the redesigned home view with hero banner
         return view('home');
     }
 

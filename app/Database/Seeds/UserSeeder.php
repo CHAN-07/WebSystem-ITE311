@@ -10,32 +10,32 @@ class UserSeeder extends Seeder
     {
         $data = [
             [
-                'username' => 'adminuser',
+                'name'     => 'Admin User',
                 'email'    => 'admin@example.com',
-                'password' => password_hash('admin123', PASSWORD_DEFAULT), // hashed password
                 'role'     => 'admin',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'password' => password_hash('admin123', PASSWORD_DEFAULT),
             ],
             [
-                'username' => 'instructor1',
-                'email'    => 'instructor@example.com',
-                'password' => password_hash('instructor123', PASSWORD_DEFAULT),
+                'name'     => 'Instructor One',
+                'email'    => 'instructor1@example.com',
                 'role'     => 'instructor',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'password' => password_hash('teach123', PASSWORD_DEFAULT),
             ],
             [
-                'username' => 'student1',
-                'email'    => 'student@example.com',
-                'password' => password_hash('student123', PASSWORD_DEFAULT),
+                'name'     => 'Student One',
+                'email'    => 'student1@example.com',
                 'role'     => 'student',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s'),
+                'password' => password_hash('stud123', PASSWORD_DEFAULT),
+            ],
+            [
+                'name'     => 'Student Two',
+                'email'    => 'student2@example.com',
+                'role'     => 'student',
+                'password' => password_hash('stud123', PASSWORD_DEFAULT),
             ],
         ];
 
-        // Insert multiple records
+        // Insert all users
         $this->db->table('users')->insertBatch($data);
     }
 }
